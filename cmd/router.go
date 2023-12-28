@@ -11,10 +11,13 @@ import (
 func NewRouter() http.Handler {
 	mux := chi.NewRouter()
 
-	mux.Use(middleware.Logger)
+	if !app.InProd {
+		mux.Use(middleware.Logger)
+	}
 
 	mux.Get("/", handlers.Home)
 	mux.Post("/verify", handlers.Verify)
 
+	mux.Get("/file", handlers.File)
 	return mux
 }

@@ -15,9 +15,5 @@ func CodeGen() string {
 }
 
 func MatchAndVerify(code string) bool {
-	if code == passCode {
-		return true
-	} else {
-		return false
-	}
+	return code == passCode
 }

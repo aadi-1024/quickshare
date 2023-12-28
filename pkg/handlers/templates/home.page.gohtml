@@ -16,6 +16,9 @@
                     <button type="button" style="z-index: 100" id="sub-button" class="btn btn-primary mx-auto mt-2 col-3">Submit</button>
             </div>
         </form>
+        <div class="row">
+            <button class="btn btn-primary mx-auto col-3 mt-2 text-center" id="link" disabled>Download</button>
+        </div>
     </div>
         <script>
             function processForm() {
@@ -34,6 +37,11 @@
                             notie.alert({
                                 type: "success",
                                 text: "Authenticated!"
+                            })
+                            let btn = document.getElementById("link")
+                            btn.removeAttribute("disabled")
+                            btn.addEventListener("click", () => {
+                                window.open("/file", '_blank')
                             })
                         } else {
                             notie.alert({
