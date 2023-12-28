@@ -1,0 +1,49 @@
+{{template "base" .}}
+
+{{define "content"}}
+    <br><br><br><br><br><br>
+    <div class="container">
+        <h3 class="text-center mb-4">
+            Enter the code displayed on the hosting device
+        </h3>
+        <form action="/verify" method="post" novalidate class="validation-needed" id="formm">
+            <div class="row">
+                <div class="col-6 text-center mt-6 mx-auto">
+                    <input required type="text" class="form-control" id="code" name="code" placeholder="Passcode">
+                </div>
+            </div>
+            <div class="row">
+                    <button type="button" style="z-index: 100" id="sub-button" class="btn btn-primary mx-auto mt-2 col-3">Submit</button>
+            </div>
+        </form>
+    </div>
+        <script>
+            function processForm() {
+                pass = document.getElementById('code').value
+                // formdata = new FormData(document.getElementById('formm'))
+                formdata = {
+                    "code": pass,
+                }
+                console.log(formdata)
+                fetch("/verify", {
+                    method: "post",
+                    body: JSON.stringify(formdata),
+                }).then(res => res.json())
+                    .then(data => {
+                        if (data.ok) {
+                            notie.alert({
+                                type: "success",
+                                text: "Authenticated!"
+                            })
+                        } else {
+                            notie.alert({
+                                type: "error",
+                                text: "Wrong Pin!"
+                            })
+                        }
+                    })
+            }
+            document.getElementById('sub-button').addEventListener('click', processForm)
+            document.getElementById('sub-button').addEventListener('touchstart', processForm)
+        </script>
+{{end}}
