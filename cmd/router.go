@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/aadi-1024/quickshare/pkg/handlers"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -8,7 +9,7 @@ import (
 )
 
 // NewRouter sets up and returns a router
-func NewRouter() http.Handler {
+func NewRouter(hash string) http.Handler {
 	mux := chi.NewRouter()
 
 	if !app.InProd {
@@ -18,6 +19,6 @@ func NewRouter() http.Handler {
 	mux.Get("/", handlers.Home)
 	mux.Post("/verify", handlers.Verify)
 
-	mux.Get("/file", handlers.File)
+	mux.Get(fmt.Sprintf("/%v", hash), handlers.File)
 	return mux
 }

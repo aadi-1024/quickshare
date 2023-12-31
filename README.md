@@ -23,4 +23,4 @@ by going to `http://ipaddr:8080`
 
 Not secure for now as:
 - uses http
-- the authentication can be easily bypassed, will be fixed by using a randomly generated endpoint instead of /file
+- ~~the authentication can be easily bypassed, will be fixed by using a randomly generated endpoint instead of /file~~ Fixed
