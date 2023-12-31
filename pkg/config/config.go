@@ -1,7 +1,8 @@
 package config
 
+// Config holds the app-wide configuration
 type Config struct {
 	Filename string
-	InProd   bool
+	Debug    bool
 	Hash     string
 }

@@ -12,7 +12,7 @@ import (
 func NewRouter(hash string) http.Handler {
 	mux := chi.NewRouter()
 
-	if !app.InProd {
+	if app.Debug {
 		mux.Use(middleware.Logger)
 	}
 

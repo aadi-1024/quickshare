@@ -21,6 +21,7 @@ type Repository struct {
 
 var Repo *Repository
 
+// Home handles the homepage
 func Home(w http.ResponseWriter, r *http.Request) {
 	t := template.New("base")
 	var err error
@@ -53,6 +54,7 @@ type jsonRequest struct {
 	Code string `json:"code"`
 }
 
+// Verify handles the otp endpoint
 func Verify(w http.ResponseWriter, r *http.Request) {
 	req := &jsonRequest{}
 	resp := &jsonResponse{}
@@ -80,6 +82,7 @@ func Verify(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// File handles the file serving endpoint
 func File(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, Repo.config.Filename)
 }

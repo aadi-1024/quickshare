@@ -10,7 +10,12 @@ import (
 var passCode string
 
 func CodeGen() string {
-	passCode = fmt.Sprintf("%d", rand.Int()%10_000)
+	randInt := 0
+	//should be minimum 10000 to generate a 4 digit password
+	for randInt < 1000 {
+		randInt = rand.Int() % 10_000
+	}
+	passCode = fmt.Sprintf("%d", randInt)
 	return passCode
 }
 
